@@ -1,26 +1,38 @@
 {
   "development": {
     "username": "root",
-    "password": null,
-    "database": "database_development",
+    "password": "111111",
+    "database": "classic",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "operatorsAliases": false
+    "pool": {
+      "max": 10,
+      "min": 0
+    },
+    "operatorAliases":false
   },
   "test": {
     "username": "root",
-    "password": null,
-    "database": "database_test",
+    "password": "111111",
+    "database": "classic",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "operatorsAliases": false
+    "pool": {
+      "max": 10,
+      "min": 0
+    },
+    "operatorAliases":false
   },
   "production": {
     "username": "root",
-    "password": null,
-    "database": "database_production",
+    "password": "111111",
+    "database": "classic",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "operatorsAliases": false
+    "pool": {
+      "max": 10,
+      "min": 0
+    },
+    "operatorAliases":false
   }
 }

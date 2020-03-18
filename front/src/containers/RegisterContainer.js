@@ -44,7 +44,7 @@ const RegisterContainer = ({history}) => {
       console.log(accessToken)
       history.push('/')
     }
-  },[history,accessToken,authError])///나중에 만져보자 user 모듈 만들어야 할수도!
+  },[accessToken,authError])///나중에 만져보자 user 모듈 만들어야 할수도!
 
   
   return (
