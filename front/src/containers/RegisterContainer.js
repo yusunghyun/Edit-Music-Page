@@ -37,6 +37,7 @@ const RegisterContainer = ({history}) => {
     if(authError){
       console.log('오류발생')
       console.log(authError)
+      return;
     }
     if(accessToken){
       console.log('회원가입성공 registerContainer')

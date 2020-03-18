@@ -1,12 +1,15 @@
 import React,{useEffect} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
-import {changeField,initializeForm} from '../modules/auth'
+import {changeField,initializeForm,loginAsync} from '../modules/auth'
 import AuthForm from '../components/auth/AuthForm';
+import {withRouter} from 'react-router-dom'
 
-const LoginContainer = () => {
+const LoginContainer = ({history}) => {
   const dispatch = useDispatch();
-  const {form} = useSelector(({auth})=>({
-    form:auth.login
+  const {form,accessToken,authError} = useSelector(({auth})=>({
+    form:auth.login,
+    accessToken:auth.accessToken,
+    authError:auth.authError,
   }))
   const onChange = e => {
     const {value,name} = e.target;
@@ -20,12 +23,27 @@ const LoginContainer = () => {
   };
   const onSubmit = e => {
     e.preventDefault();
-
+    const {userid,password} = form;
+    dispatch(loginAsync({userid,password}))
 
   }
   useEffect(()=>{
     dispatch(initializeForm('login'));
   },[dispatch])
+  
+  useEffect(()=>{
+    if(authError){
+      console.log('오류발생')
+      console.log(authError)
+      return;
+    }
+    if(accessToken){
+      console.log('회원가입성공 registerContainer')
+      console.log(accessToken)
+      history.push('/')
+    }
+  },[history,accessToken,authError])///나중에 만져보자 user 모듈 만들어야 할수도!
+
   
   return (
     <AuthForm
@@ -37,4 +55,4 @@ const LoginContainer = () => {
   );
 };
 
-export default LoginContainer;
+export default withRouter(LoginContainer);
