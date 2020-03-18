@@ -1,0 +1,12 @@
+.passport
+ysh616.pem
+/node_modules
+/log
+package-lock.json
+/sessions
+/uploads
+.vimrc
+.bash_history
+.bash_profile
+.bashrc
+.npm
