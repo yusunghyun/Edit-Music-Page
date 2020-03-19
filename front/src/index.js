@@ -19,12 +19,26 @@ import { createLogger } from 'redux-logger'
 import ReduxThunk from 'redux-thunk'
 //리듀서 꺼네기
 import rootReducer from './modules'
+import {loginSuccessAction} from './modules/auth'
+ 
 
 //로그 생성 미들웨어 객체 -> 상단에.
 const logger = createLogger();
 //해석:스토어를 만들겠다 리듀서를 써서 composeWithDevTools()은 선택, 미들웨어는 logger,ReduxThunk 다 라는 뜻
 const store = createStore(rootReducer,composeWithDevTools(applyMiddleware(logger,ReduxThunk)))
 
+function loadUser(){
+  try{
+    const {accessToken} = localStorage;
+    if(!accessToken) return;
+
+    store.dispatch(loginSuccessAction({accessToken}))
+
+  } catch (err) {
+    console.log('로컬스토리지 x')
+  }
+}
+loadUser()
 
 ReactDOM.render(<Provider store={store}><BrowserRouter><App /></BrowserRouter></Provider>, document.getElementById('root'));
 
