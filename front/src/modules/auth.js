@@ -119,11 +119,17 @@ export const registerAsync = ({userid,password,username}) => async dispatch => {
 }
 
 
-export const logoutAsync = () => async dispatch => {
-  await api.auth.logout()
-  dispatch(logoutAction())
-  delete localStorage.accessToken
-  api.setAuthInHeader(null)
+export const logoutAsync = () => dispatch => {
+  try{
+    console.log('124줄')
+    api.auth.logout()
+    console.log('126줄')
+    dispatch(logoutAction())
+    delete localStorage.accessToken
+    api.setAuthInHeader(null)
+  } catch(err){
+    console.error(err)
+  }
 }
 // export const  = () => async dispatch => {
 //   const result = await 

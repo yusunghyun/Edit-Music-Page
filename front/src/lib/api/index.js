@@ -34,7 +34,7 @@ export const auth = {
     return request('post','/auth/register',{userid,username,password})
   },
   logout(){
-    return request('get','/auth/logout')
+    return request('post','/auth/logout')
   },
 }
 

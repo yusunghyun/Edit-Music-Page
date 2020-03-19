@@ -16,10 +16,10 @@ sequelize.sync(); //{force:true}
 
 // view engine setup
 app.locals.pretty = true;
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'pug');
-app.engine('html', require('pug').renderFile);
-app.set('view engine', 'html');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+// app.engine('html', require('pug').renderFile);
+// app.set('view engine', 'html');
 
 app.use(cors());
 app.use(logger('dev'));

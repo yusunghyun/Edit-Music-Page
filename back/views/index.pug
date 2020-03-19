@@ -1,5 +1,11 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 API LIST
+  div localhost:3000/
+  div Login
+  div curl -X POST localhost:3000/auth/login
+  div Logout
+  div curl -X POST localhost:3000/auth/logout
+  div Register
+  div curl -X POST localhost:3000/auth/register

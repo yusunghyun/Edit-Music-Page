@@ -44,9 +44,9 @@ router.post("/login",async(req, res, next) => {
   res.json({ accessToken, user })
 });
 
-router.get('/logout',(req,res,next)=>{
-	req.session.destroy();//혹시 세션남아있으면 지워줘
-	res.end();//다시 원래 페이지로!
-})
+router.post('/logout',(req,res,next)=>{
+  console.log('122222222222222222222222222222')
+  res.json('logout성공')
+});
 
 module.exports = router;
