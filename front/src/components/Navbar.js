@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Responsive from './common/Responsive'
 import Button from './common/Button'
 import {withRouter} from 'react-router-dom'
+import PasswordModal from './PasswordModal';
 
 const HeaderBlock = styled.div`
   position:fixed;
@@ -31,13 +32,18 @@ const Spacer = styled.div`
   height: 4rem;
 `;
 
-const Navbar = ({logoutAsync,history}) => {
+const Navbar = ({logoutAsync,history,isModal,modalOpenAction,modalCloseAction,editPasswordAsync}) => {
   return (
     <>
       <HeaderBlock>
         <Wrapper>
           <div className='logo'>음악 편집 페이지</div>
-          <div className='right2'><Button>비밀번호 변경</Button></div>
+          <div className='right2'><PasswordModal
+            modalOpenAction={modalOpenAction}
+            modalCloseAction={modalCloseAction}
+            isModal={isModal}
+            editPasswordAsync={editPasswordAsync}
+          /></div>
           <div className='right'><Button onClick={()=>{
             logoutAsync()
             history.push('/login')

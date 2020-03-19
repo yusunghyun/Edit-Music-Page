@@ -23,7 +23,7 @@ router.post("/register", async (req, res, next) => {
       });
       const accessToken = authService.signToken(resultUser.id)
       
-  		res.json({ accessToken, resultUser })
+  		res.json({ accessToken, id:resultUser.id })
     }
   } catch (err) {
     console.error(err);
@@ -41,12 +41,29 @@ router.post("/login",async(req, res, next) => {
 
   const accessToken = authService.signToken(user.id)
   
-  res.json({ accessToken, user })
+  res.json({ accessToken, id:user.id })
 });
 
 router.post('/logout',(req,res,next)=>{
   console.log('122222222222222222222222222222')
   res.json('logout성공')
+});
+
+router.put("/update",async(req, res, next) => {
+	const { id,password } = req.body
+
+  if (!id) return res.status(400).json({error: 'no id'})
+
+  const user = await User.findOne({
+    where: { id }
+  })
+  if (!user) return res.status(404).json({error: 'no list'})
+
+  user.password = password
+
+  await user.save()
+
+  res.json('비번변경성공')
 });
 
 module.exports = router;

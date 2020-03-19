@@ -15,6 +15,10 @@ const REGISTER_FAILURE = 'auth/REGISTER_FAILURE'
 
 const LOGOUT = 'auth/LOGOUT'
 
+const MODAL_OPEN = 'auth/MODAL_OPEN'
+const MODAL_CLOSE = 'auth/MODAL_CLOSE'
+
+const EDIT_PASSWORD = 'auth/EDIT_PASSWORD'
 
 export const changeField = createAction(CHANGE_FIELD)
 export const initializeForm = createAction(INITIALIZE_FORM);//register
@@ -29,6 +33,11 @@ export const registerFailureAction = createAction(REGISTER_FAILURE)
 
 export const logoutAction = createAction(LOGOUT)
 
+export const modalOpenAction = createAction(MODAL_OPEN)
+export const modalCloseAction = createAction(MODAL_CLOSE)
+
+export const editPasswordAction = createAction(EDIT_PASSWORD)
+
 const initialState = {
   register:{
     userid:'',
@@ -42,6 +51,7 @@ const initialState = {
   },
   accessToken:null,
   authError:null,
+  isModal:false,
 }
 
 const auth = handleActions({
@@ -84,6 +94,14 @@ const auth = handleActions({
     ...state,
     accessToken:null,
   }),
+  [MODAL_OPEN]:(state,{payload}) => ({
+    ...state,
+    isModal:true,
+  }),
+  [MODAL_CLOSE]:(state,{payload}) => ({
+    ...state,
+    isModal:false
+  }),
   
 },initialState)
 
@@ -96,6 +114,7 @@ export const loginAsync = ({userid,password}) => async dispatch => {
     console.log('modules/auth.js 96줄')
     dispatch(loginSuccessAction({accessToken:result.accessToken}))
     localStorage.accessToken = result.accessToken
+    localStorage.id = result.id
     api.setAuthInHeader(result.accessToken)
     console.log('modules/auth.js 100줄')
   } catch(err){
@@ -111,13 +130,13 @@ export const registerAsync = ({userid,password,username}) => async dispatch => {
     console.log('modules/auth.js 111줄')
     dispatch(registerSuccessAction({accessToken:result.accessToken}))
     localStorage.accessToken = result.accessToken
+    localStorage.id = result.id
     api.setAuthInHeader(result.accessToken)
   } catch(err) {
     console.log('modules/auth.js 116줄')
     dispatch(registerFailureAction({error:err}))
   }
 }
-
 
 export const logoutAsync = () => dispatch => {
   try{
@@ -126,8 +145,17 @@ export const logoutAsync = () => dispatch => {
     console.log('126줄')
     dispatch(logoutAction())
     delete localStorage.accessToken
+    delete localStorage.id
     api.setAuthInHeader(null)
   } catch(err){
+    console.error(err)
+  }
+}
+
+export const editPasswordAsync = ({id,password}) => async dispatch => {
+  try{
+    const result = await api.auth.update({id,password})
+  } catch(err) {
     console.error(err)
   }
 }

@@ -36,5 +36,8 @@ export const auth = {
   logout(){
     return request('post','/auth/logout')
   },
+  update({id,password}){
+    return request('put','/auth/update',{id,password})
+  }
 }
 
