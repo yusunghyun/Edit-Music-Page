@@ -1,4 +1,6 @@
 import React from 'react';
+import Button from './common/Button'
+
 
 const PasswordModal = ({isModal,modalCloseAction,modalOpenAction,editPasswordAsync}) => {
   const [value,setValue] = React.useState()
@@ -10,7 +12,7 @@ const PasswordModal = ({isModal,modalCloseAction,modalOpenAction,editPasswordAsy
         <React.Fragment>
         <div className="Modal-overlay" />
         <div className="Modal">
-          <p className="title">Modal Title</p>
+          <p className="title">비밀번호 변경</p>
           <div className="content">
             <form onSubmit={(e)=>{
               e.preventDefault();
@@ -33,7 +35,7 @@ const PasswordModal = ({isModal,modalCloseAction,modalOpenAction,editPasswordAsy
           </div>
         </div>
         </React.Fragment>
-        : <p onClick={modalOpenAction} >비밀번호변경</p>
+        : <Button onClick={modalOpenAction}>비밀번호변경</Button>
       }
     </React.Fragment>
   );
