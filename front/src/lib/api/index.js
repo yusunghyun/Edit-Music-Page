@@ -41,3 +41,9 @@ export const auth = {
   }
 }
 
+export const music = {
+  addMusic(file){
+    console.log(file)
+    return request('post','/music/musiclist',file,{headers:{'Content-Type':'multipart/form-data'}})
+  },
+}

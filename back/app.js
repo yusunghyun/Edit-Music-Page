@@ -23,10 +23,12 @@ app.set('view engine', 'pug');
 
 app.use(cors());
 app.use(logger('dev'));
+
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: true }));
 app.use(cookieParser(process.env.SECRET));
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 /* Morgan 셋팅 */
 const logDirectory = path.join(__dirname, 'log');
@@ -49,11 +51,17 @@ app.use(methodOverride(function (req, res) {
   }
 }));
 
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
+app.use(bodyParser.text({ limit: '50mb' ,extended: true}));
+app.use(bodyParser.raw({  limit: '50mb',extended: true }));
 var indexRouter = require('./routes/index.js');
 var authRouter = require('./routes/auth.js');
-
+var musicRouter = require('./routes/music.js')
+// console.log('Limit file size: '+limit);
 app.use('/', indexRouter);
 app.use('/auth', authRouter); //로그인,회원가입,로그아웃
+app.use('/music',musicRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
