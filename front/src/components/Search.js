@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Search = () => {
+const Search = ({searchMusic,searchMusicAction}) => {
+  const [search,setSearch] = useState('')
   return (
-    <>
-      <input/>
+    <form onSubmit={(e)=>{e.preventDefault();searchMusicAction(search)}}>
+      <input value={search} onChange={(e)=>{setSearch(e.target.value)}}/>
       <button>검색</button>
-    </>
+    </form>
   );
 };
 

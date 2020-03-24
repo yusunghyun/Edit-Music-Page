@@ -8,8 +8,6 @@ const MusicPage = () => {
   return (
     <div>
       <NavbarContainer/>
-      뮤직페이지
-      <Search/>
       <MusicContainer/>
     </div>
   );

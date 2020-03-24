@@ -2,13 +2,14 @@ import { handleActions, createAction } from 'redux-actions'
 import * as api from '../lib/api'
 
 const GET_MUSIC = 'music/GET_MUSIC'
-
+const SEARCH_MUSIC = 'music/SEARCH_MUSIC'
 
 export const getMusicList = createAction(GET_MUSIC)
-
+export const searchMusicAction = createAction(SEARCH_MUSIC)
 
 const initialState = {
   musicList:[],
+  searchMusic:[],
 }
 
 const music = handleActions({
@@ -16,6 +17,10 @@ const music = handleActions({
     ...state,
     musicList:result
   }),
+  [SEARCH_MUSIC]: (state, {payload:result}) => ({
+    ...state,
+    searchMusic: state.musicList.filter((ele)=>ele.title.indexOf(result)!==-1)
+  })
   
   
 },initialState)
