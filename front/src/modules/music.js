@@ -33,7 +33,7 @@ export const getMusicListAsync = () => async dispatch => {
 export const updateMusicListAsync = ({id,title,artist,album,track}) => async dispatch => {
   try{
     const result = await api.music.updateMusic({id,title,artist,album,track})
-    // dispatch(getMusicList(result))
+    dispatch(getMusicList(result))
   } catch(err) {
     console.error(err)
   }

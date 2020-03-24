@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import EditMusicModal from './EditMusicModal';
+import EditMusic from './EditMusic';
 
 const MusicList = ({musicList,getMusicListAsync,updateMusicListAsync,deleteMusicListAsync}) => {
   useEffect(()=>{
@@ -12,8 +12,8 @@ const MusicList = ({musicList,getMusicListAsync,updateMusicListAsync,deleteMusic
           <div key={idx}>
           <span>{ele.title}</span>
           <span>{ele.artist}</span>
-          <EditMusicModal 
-            id={ele.id}
+          <EditMusic 
+            ele={ele}
             getMusicListAsync={getMusicListAsync}
             updateMusicListAsync={updateMusicListAsync}
             deleteMusicListAsync={deleteMusicListAsync}

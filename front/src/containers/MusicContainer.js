@@ -15,7 +15,7 @@ const MusicContainer = () => {
     <MusicList
       musicList={musicList}
       getMusicListAsync={()=>dispatch(getMusicListAsync())}
-      updateMusicListAsync={()=>dispatch(updateMusicListAsync())}
+      updateMusicListAsync={({id,title,artist,album,track})=>dispatch(updateMusicListAsync({id,title,artist,album,track}))}
       deleteMusicListAsync={({id})=>{
         return dispatch(deleteMusicListAsync({id}))
       }}

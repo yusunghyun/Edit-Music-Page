@@ -19,13 +19,12 @@ router.post("/musiclist",upload.single('mp3'), async(req, res, next) => {
       let filepath = path.join(__dirname,`../public/uploads/${req.file.filename}`)
       console.log(filepath)
       let n3 = nodeid3.read(filepath)
-      let {TRCK,TALB} = n3.raw
-      let {title,artist} = n3
+      let {title,artist,trackNumber,album} = n3
       let music = await Music.create({
         title,
         artist,
-        track:TRCK,
-        album:TALB,
+        track:trackNumber,
+        album:album,
         filepath,
         filename:req.file.filename
       })
@@ -42,9 +41,11 @@ router.post("/musiclist",upload.single('mp3'), async(req, res, next) => {
 });
 
 router.put("/musiclist", async (req,res,next) => {
-  const { id } = req.body
+  const { id,title,track,album,artist } = req.body
   let body = req.body
-
+  console.log('-------------------------------')
+  console.log(body)
+  console.log('-------------------------------')
   if (!id) return res.status(400).json({error: 'no id'})
 
   const item = await Music.findOne({
@@ -61,7 +62,10 @@ router.put("/musiclist", async (req,res,next) => {
   })
 
   await item.save()
-  res.json(item)
+  nodeid3.update({title,artist,trackNumber:track,album},item.filepath)
+
+  const item2 = await Music.findAll()
+  res.json(item2)
 })
 
 router.delete("/musiclist", async (req,res,next) => {
