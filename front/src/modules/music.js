@@ -42,7 +42,7 @@ export const deleteMusicListAsync = ({id}) => async dispatch => {
   try{
     const result = await api.music.deleteMusic({id})
     console.log('delete')
-    // dispatch(getMusicList(result))
+    dispatch(getMusicList(result))
   } catch(err) {
     console.error(err)
   }

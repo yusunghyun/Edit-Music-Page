@@ -67,13 +67,15 @@ router.put("/musiclist", async (req,res,next) => {
 router.delete("/musiclist", async (req,res,next) => {
   try{
     const { id } = req.body
-    let id2 = id
-    let {filename} = await Music.findOne({where:{id:id2}})
-    let a = path.join(__dirname,`../public/uploads/${filename}`)
-    console.log(a)
-    fs.unlink(a)
+    let {filepath} = await Music.findOne({where:{id}})
+    console.log('id : '+id)
+    console.log('filepath : '+filepath)
+    fs.unlinkSync(filepath, function(err) {
+      if (err) throw err;
+      console.log('file deleted');
+    });
 
-    await Music.destroy({ where:  {id:id2}  })
+    await Music.destroy({ where:  {id}  })  
     const item = await Music.findAll()
     res.json(item)
   } catch(err){

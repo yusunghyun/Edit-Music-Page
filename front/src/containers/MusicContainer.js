@@ -17,8 +17,6 @@ const MusicContainer = () => {
       getMusicListAsync={()=>dispatch(getMusicListAsync())}
       updateMusicListAsync={()=>dispatch(updateMusicListAsync())}
       deleteMusicListAsync={({id})=>{
-        console.log('containers/mC.js')
-        console.log(id)
         return dispatch(deleteMusicListAsync({id}))
       }}
     />

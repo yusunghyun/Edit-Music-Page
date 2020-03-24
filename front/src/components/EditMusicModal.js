@@ -7,9 +7,7 @@ const EditMusicModal = ({id,getMusicListAsync,updateMusicListAsync,deleteMusicLi
       수정
     </button>
     <button onClick={()=>{
-      console.log(id)
       deleteMusicListAsync({id})
-      getMusicListAsync()
       }}>
       삭제
     </button>
