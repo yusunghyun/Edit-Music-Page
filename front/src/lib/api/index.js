@@ -10,7 +10,6 @@ const request = (method, url, data) => {
     url: DOMAIN + url,
     data
   }).then(result => {
-    console.log('api/index.js 13줄')
     return result.data
   })
     .catch(result => {
@@ -26,11 +25,9 @@ export const setAuthInHeader = token => {
 
 export const auth = {
   login({userid,password}){
-    console.log('api/index.js 29줄')
     return request('post','/auth/login',{userid,password})
   },
   register({userid,username,password}){
-    console.log('api/index.js 33줄')
     return request('post','/auth/register',{userid,username,password})
   },
   logout(){
@@ -47,18 +44,14 @@ export const music = {
     return data
   },
   async postMusic(file){
-    console.log(file)
     let data = await request('post','/music/musiclist',file,{headers:{'Content-Type':'multipart/form-data'}})
     return data
   },
   async updateMusic({id,title,artist,album,track}){
-    console.log({id,title,artist,album,track})
     let data = await request('put','/music/musiclist',{id,title,artist,album,track})
     return data
   },
   async deleteMusic({id}){
-    console.log('api/index.js')
-    console.log(id)
     let data = await request('delete','/music/musiclist',{id})
     return data
   },
