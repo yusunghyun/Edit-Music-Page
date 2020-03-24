@@ -42,8 +42,24 @@ export const auth = {
 }
 
 export const music = {
-  addMusic(file){
+  async getMusicList(){
+    let data = await request('get','/music/musiclist')
+    return data
+  },
+  async postMusic(file){
     console.log(file)
-    return request('post','/music/musiclist',file,{headers:{'Content-Type':'multipart/form-data'}})
+    let data = await request('post','/music/musiclist',file,{headers:{'Content-Type':'multipart/form-data'}})
+    return data
+  },
+  async updateMusic({id,title,artist,album,track}){
+    console.log({id,title,artist,album,track})
+    let data = await request('put','/music/musiclist',{id,title,artist,album,track})
+    return data
+  },
+  async deleteMusic({id}){
+    console.log('api/index.js')
+    console.log(id)
+    let data = await request('delete','/music/musiclist',{id})
+    return data
   },
 }

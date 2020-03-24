@@ -33,13 +33,9 @@ const LoginContainer = ({history}) => {
   
   useEffect(()=>{
     if(authError){
-      console.log('오류발생')
-      console.log(authError)
       return;
     }
     if(accessToken){
-      console.log('회원가입성공 registerContainer')
-      console.log(accessToken)
       history.push('/')
     }
   },[history,accessToken,authError])///나중에 만져보자 user 모듈 만들어야 할수도!

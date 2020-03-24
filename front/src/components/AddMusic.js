@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as api from '../lib/api'
 
-const AddMusic = () => {
+const AddMusic = ({postMusicListAsync}) => {
   
   return (
     <>
@@ -11,7 +11,7 @@ const AddMusic = () => {
         // for(let file of fd.values()){
         //   console.log(file)
         // }
-          api.music.addMusic(fd)
+          postMusicListAsync(fd)
         // api.music.addMusic()
         }} 
         encType="multipart/form-data">

@@ -19,5 +19,6 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 db.User=require('./User.js')(sequelize,Sequelize);
+db.Music=require('./Music.js')(sequelize,Sequelize);
 
 module.exports = db;

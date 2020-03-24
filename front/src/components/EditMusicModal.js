@@ -1,10 +1,19 @@
 import React from 'react';
 
-const EditMusicModal = () => {
+const EditMusicModal = ({id,getMusicListAsync,updateMusicListAsync,deleteMusicListAsync}) => {
   return (
-    <div>
-      음악
-    </div>
+    <>
+    <button>
+      수정
+    </button>
+    <button onClick={()=>{
+      console.log(id)
+      deleteMusicListAsync({id})
+      getMusicListAsync()
+      }}>
+      삭제
+    </button>
+    </>
   );
 };
 

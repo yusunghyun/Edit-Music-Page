@@ -1,15 +1,25 @@
 module.exports = (sequelize, Sequelize) => {
   return sequelize.define('Music', {
-    musicname: {
+    title: {
       type: Sequelize.STRING,
       unique: true
     },
-    password: {
+    artist: {
       type: Sequelize.STRING,
     },
-    username: {
+    filepath: {
       type: Sequelize.STRING,
-    }
+    },
+    track: {
+      type: Sequelize.STRING,
+    },
+    album: {
+      type: Sequelize.STRING,
+    },
+    filename: {
+      type: Sequelize.STRING,
+    },
+
   },{
     charset: 'utf8',
     collate: 'utf8_general_ci',

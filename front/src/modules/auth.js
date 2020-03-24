@@ -109,25 +109,19 @@ export default auth;
 
 export const loginAsync = ({userid,password}) => async dispatch => {
   try{
-    console.log('modules/auth.js 94줄')
     const result = await api.auth.login({userid,password})
-    console.log('modules/auth.js 96줄')
     dispatch(loginSuccessAction({accessToken:result.accessToken}))
     localStorage.accessToken = result.accessToken
     localStorage.id = result.id
     api.setAuthInHeader(result.accessToken)
-    console.log('modules/auth.js 100줄')
   } catch(err){
-    console.log('modules/auth.js 102줄')
     dispatch(loginFailureAction({error:err}))
   }
 }
 
 export const registerAsync = ({userid,password,username}) => async dispatch => {
   try{
-    console.log('modules/auth.js 109줄')
     const result = await api.auth.register({userid,password,username})
-    console.log('modules/auth.js 111줄')
     dispatch(registerSuccessAction({accessToken:result.accessToken}))
     localStorage.accessToken = result.accessToken
     localStorage.id = result.id
