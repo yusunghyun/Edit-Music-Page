@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const DOMAIN = 'http://127.0.0.1:3000'
+const DOMAIN = 'http://api.ysh616.com'
 const UNAUTHORIZED = 401
 
 
