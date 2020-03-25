@@ -8,12 +8,12 @@ const {upload} = require('../modules/multer-conn.js')
 const nodeid3 = require('node-id3')
 const { Music } = require("../models");
 
-router.get("/musiclist", async (req,res,next) => {
+router.get("/musiclist",authService.ensureAuth(), async (req,res,next) => {
   const item = await Music.findAll()
   res.json(item)
 })
 
-router.post("/musiclist",upload.single('mp3'), async(req, res, next) => {
+router.post("/musiclist",authService.ensureAuth(),upload.single('mp3'), async(req, res, next) => {
   try{
       if(req.isFileValidate){
       let filepath = path.join(__dirname,`../public/uploads/${req.file.filename}`)
@@ -40,7 +40,7 @@ router.post("/musiclist",upload.single('mp3'), async(req, res, next) => {
   }
 });
 
-router.put("/musiclist", async (req,res,next) => {
+router.put("/musiclist",authService.ensureAuth(), async (req,res,next) => {
   const { id,title,track,album,artist } = req.body
   let body = req.body
   console.log('-------------------------------')
@@ -68,7 +68,7 @@ router.put("/musiclist", async (req,res,next) => {
   res.json(item2)
 })
 
-router.delete("/musiclist", async (req,res,next) => {
+router.delete("/musiclist",authService.ensureAuth(), async (req,res,next) => {
   try{
     const { id } = req.body
     let {filepath} = await Music.findOne({where:{id}})

@@ -49,7 +49,7 @@ router.post('/logout',(req,res,next)=>{
   res.json('logout성공')
 });
 
-router.put("/update",async(req, res, next) => {
+router.put("/update",authService.ensureAuth(),async(req, res, next) => {
 	const { id,password } = req.body
 
   if (!id) return res.status(400).json({error: 'no id'})
