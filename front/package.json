@@ -9,6 +9,7 @@
     "axios": "^0.19.0",
     "gh-pages": "^2.2.0",
     "immer": "^6.0.2",
+    "pm2": "^4.2.3",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-modal": "^3.11.2",
@@ -27,7 +28,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "serve" : "export PORT=80 && react-scripts start"
+    "serve": "export PORT=80 && react-scripts start",
+    "dev": "pm2 start react-scripts"
   },
   "eslintConfig": {
     "extends": "react-app"
