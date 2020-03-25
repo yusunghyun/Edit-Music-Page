@@ -19,7 +19,8 @@ import ReduxThunk from 'redux-thunk'
 //리듀서 꺼네기
 import rootReducer from './modules'
 import {loginSuccessAction} from './modules/auth'
- 
+
+import * as api from './lib/api' 
 
 //해석:스토어를 만들겠다 리듀서를 써서 composeWithDevTools()은 선택, 미들웨어는 ,ReduxThunk 다 라는 뜻
 const store = createStore(rootReducer,composeWithDevTools(applyMiddleware(ReduxThunk)))
@@ -30,7 +31,7 @@ function loadUser(){
     if(!accessToken) return;
 
     store.dispatch(loginSuccessAction({accessToken}))
-
+    api.setAuthInHeader(accessToken)
   } catch (err) {
     console.log('로컬스토리지 x')
   }

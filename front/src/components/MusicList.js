@@ -28,8 +28,8 @@ const Text = styled.div`
 
 const MusicList = ({searchMusic,searchMusicAction,musicList,getMusicListAsync,updateMusicListAsync,deleteMusicListAsync}) => {
   useEffect(()=>{
-    getMusicListAsync()
-  },[])
+    if(localStorage.accessToken) getMusicListAsync()
+  },[localStorage.accessToken])
 
   return (
     <List>
@@ -38,8 +38,8 @@ const MusicList = ({searchMusic,searchMusicAction,musicList,getMusicListAsync,up
         musicList.map((ele,idx)=>(
           <Item key={idx}>
           <Text>
-          <span>{ele.title}</span>
-          <span>{ele.artist}</span>
+          <span>{ele.title} - </span>
+          <span>{ele.artist} .mp3</span>
           </Text>
           <EditMusic 
             ele={ele}

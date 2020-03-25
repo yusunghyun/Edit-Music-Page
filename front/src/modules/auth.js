@@ -127,16 +127,13 @@ export const registerAsync = ({userid,password,username}) => async dispatch => {
     localStorage.id = result.id
     api.setAuthInHeader(result.accessToken)
   } catch(err) {
-    console.log('modules/auth.js 116줄')
     dispatch(registerFailureAction({error:err}))
   }
 }
 
 export const logoutAsync = () => dispatch => {
   try{
-    console.log('124줄')
     api.auth.logout()
-    console.log('126줄')
     dispatch(logoutAction())
     delete localStorage.accessToken
     delete localStorage.id

@@ -7,9 +7,6 @@ const authService = require('../jwt/auth.js')
 
 router.post("/register", async (req, res, next) => {
   let { userid,username, password } = req.body;
-  console.log('-------------------------------------')
-  console.log("s")
-  console.log('-------------------------------------')
   try {
     let result = await User.findOne({ where: { userid } }); //가입중 이미 있나 찾아보자!!
     if (result) {
