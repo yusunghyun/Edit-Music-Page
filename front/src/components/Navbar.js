@@ -21,6 +21,7 @@ const Wrapper = styled(Responsive)`
     font-size: 1.125rem;
     font-weight: 800;
     letter-spacing: 2px;
+    color: #22b8cf;
   }
   .right{
     display: flex;

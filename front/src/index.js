@@ -15,17 +15,14 @@ import { Provider } from 'react-redux'
 //크롬개발자도구에 데브툴 연동(선택사항)
 import { composeWithDevTools } from 'redux-devtools-extension'
 //미들웨어 임폴트
-import { createLogger } from 'redux-logger'
 import ReduxThunk from 'redux-thunk'
 //리듀서 꺼네기
 import rootReducer from './modules'
 import {loginSuccessAction} from './modules/auth'
  
 
-//로그 생성 미들웨어 객체 -> 상단에.
-const logger = createLogger();
-//해석:스토어를 만들겠다 리듀서를 써서 composeWithDevTools()은 선택, 미들웨어는 logger,ReduxThunk 다 라는 뜻
-const store = createStore(rootReducer,composeWithDevTools(applyMiddleware(logger,ReduxThunk)))
+//해석:스토어를 만들겠다 리듀서를 써서 composeWithDevTools()은 선택, 미들웨어는 ,ReduxThunk 다 라는 뜻
+const store = createStore(rootReducer,composeWithDevTools(applyMiddleware(ReduxThunk)))
 
 function loadUser(){
   try{

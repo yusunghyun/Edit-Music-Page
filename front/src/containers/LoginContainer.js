@@ -1,10 +1,11 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 import {changeField,initializeForm,loginAsync} from '../modules/auth'
 import AuthForm from '../components/auth/AuthForm';
 import {withRouter} from 'react-router-dom'
 
 const LoginContainer = ({history}) => {
+  const [error,setError] = useState(null)
   const dispatch = useDispatch();
   const {form,accessToken,authError} = useSelector(({auth})=>({
     form:auth.login,
@@ -33,6 +34,7 @@ const LoginContainer = ({history}) => {
   
   useEffect(()=>{
     if(authError){
+      setError('로그인 실패')
       return;
     }
     if(accessToken){
@@ -47,6 +49,7 @@ const LoginContainer = ({history}) => {
       form={form}
       onChange={onChange}
       onSubmit={onSubmit}
+      error={error}
     />
   );
 };

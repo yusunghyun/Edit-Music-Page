@@ -12,7 +12,7 @@ const StyledButton = styled.button`
   outline: none;
   cursor: pointer;
 
-  background: ${palette.gray[8]};
+  background: #22b8cf;
   &:hover {
     background ${palette.gray[6]};
   }
@@ -27,7 +27,7 @@ const StyledButton = styled.button`
   ${props =>
     props.cyan &&
     css`
-      background: ${palette.cyan[5]};
+      background: #22b8cf;
       &:hover{
         background: ${palette.cyan[4]}
       }

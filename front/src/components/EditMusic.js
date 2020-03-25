@@ -1,6 +1,30 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
+import styled from 'styled-components'
+
+const RemoveBtn = styled.button`
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  background:#ff6b6b;
+  color:white;
+  cursor:pointer;
+  &:hover{
+      color:#ff8787;
+  }
+`;
+const EditBtn = styled.button`
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  background:#22b8cf;
+  color:white;
+  cursor:pointer;
+  &:hover{
+      color:#22b8ef;
+  }
+`;
  
 const customStyles = {
   content : {
@@ -39,7 +63,7 @@ const EditMusic = ({ele,getMusicListAsync,updateMusicListAsync,deleteMusicListAs
 
   return (
     <>
-     <button onClick={openModal}>수정</button>
+     <EditBtn onClick={openModal}>수정</EditBtn>
         <Modal
           isOpen={modalIsOpen}
           onAfterOpen={afterOpenModal}
@@ -61,11 +85,11 @@ const EditMusic = ({ele,getMusicListAsync,updateMusicListAsync,deleteMusicListAs
           <button onClick={closeModal}>닫기</button>
         </Modal>
     
-    <button onClick={()=>{
+    <RemoveBtn onClick={()=>{
       deleteMusicListAsync({id:ele.id})
       }}>
       삭제
-    </button>
+    </RemoveBtn>
     </>
   );
 };
