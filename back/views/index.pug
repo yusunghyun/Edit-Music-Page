@@ -2,10 +2,22 @@ extends layout
 
 block content
   h1 API LIST
-  div localhost:3000/
+  div http://api.ysh616.com
+  h2 Auth
   div Login
-  div curl -X POST localhost:3000/auth/login
-  div Logout
-  div curl -X POST localhost:3000/auth/logout
+  div curl -X POST http://api.ysh616.com/auth/login
   div Register
-  div curl -X POST localhost:3000/auth/register
+  div curl -X POST http://api.ysh616.com/auth/register
+  div Logout
+  div curl -X POST http://api.ysh616.com/auth/logout
+  div Update
+  div curl -X PUT http://api.ysh616.com/auth/update
+  h2 Music
+  div Get music
+  div curl -X GET http://api.ysh616.com/music/musiclist
+  div Post music
+  div curl -X POST http://api.ysh616.com/music/musiclist
+  div Update music
+  div curl -X PUT http://api.ysh616.com/music/musiclist
+  div Delete music
+  div curl -X DELETE http://api.ysh616.com/music/musiclist
