@@ -29,7 +29,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "serve": "export PORT=80 && react-scripts start",
-    "dev": "pm2 start react-scripts"
+    "dev": "export PORT=80 && pm2 start react-scripts"
   },
   "eslintConfig": {
     "extends": "react-app"
